@@ -16,8 +16,10 @@ services:
     networks:
     - back
     - lb_web
+    ports:
+    - "80:80"
   app:
-    image: indiehosters/discourse
+    image: shaunakdas2020/discourse-indie
     volumes:
       - ./data/assets:/usr/src/app/public/assets
       - ./data/uploads:/usr/src/app/public/uploads
@@ -28,11 +30,11 @@ services:
     env_file:
       - ./env
     environment:
-      - DISCOURSE_HOSTNAME=$VIRTUAL_HOST
+      - DISCOURSE_HOSTNAME="connectrial.tk"
     networks:
     - back
   sidekiq:
-    image: indiehosters/discourse
+    image: shaunakdas2020/discourse-indie
     command: bundle exec sidekiq -q critical -q default -q low -v
     links:
       - postgres
@@ -40,7 +42,7 @@ services:
     env_file:
       - ./env
     environment:
-      - DISCOURSE_HOSTNAME=$VIRTUAL_HOST
+      - DISCOURSE_HOSTNAME="connectrial.tk"
     volumes_from:
       - app
     networks:

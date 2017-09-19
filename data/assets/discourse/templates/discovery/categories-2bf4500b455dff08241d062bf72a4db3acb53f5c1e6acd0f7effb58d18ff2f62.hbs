@@ -1,0 +1,7 @@
+{{#discovery-categories refresh="refresh"}}
+  {{component controller.categoryPageStyle
+              categories=model.categories
+              latestTopicOnly=controller.latestTopicOnly
+              topics=model.topicList.topics
+              loadingTopics=model.loadingTopics}}
+{{/discovery-categories}}
